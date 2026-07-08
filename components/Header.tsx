@@ -1,3 +1,11 @@
+"use client";
+
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Cormorant_Garamond, Manrope, Poppins } from "next/font/google";
@@ -18,30 +26,56 @@ export const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-export default function Hero() {
+export default function Header() {
+  const { scrollY } = useScroll();
+
+  // Background
+  const scale = useTransform(scrollY, [0, 800], [1, 1.04]);
+  const brightness = useTransform(scrollY, [0, 800], [1, 0.6]);
+  const overlayOpacity = useTransform(scrollY, [0, 800], [0.25, 0.7]);
+
+  // Content
+  const contentY = useTransform(scrollY, [0, 500], [0, -100]);
+  const contentOpacity = useTransform(scrollY, [0, 450], [1, 0]);
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section className="sticky top-0 h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[url('/assets/headerPhone.jpeg')] md:bg-[url('/assets/headerLap.jpeg')] bg-cover bg-center" />
+      <motion.div
+        style={{
+          scale,
+          filter: useMotionTemplate`brightness(${brightness})`,
+        }}
+        className="absolute -inset-8 bg-[url('/assets/headerPhone.jpeg')] bg-cover bg-center md:bg-[url('/assets/headerLap.jpeg')]"
+      />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+      <motion.div
+        style={{ opacity: overlayOpacity }}
+        className="absolute inset-0 bg-black"
+      />
 
-      {/* HERO CONTENT */}
-      <div className="relative z-10 flex min-h-screen items-center">
-        <div className="w-full max-w-2xl px-4 sm:px-6 md:px-12 lg:px-20 text-white">
+      {/* Content */}
+      <motion.div
+        style={{
+          y: contentY,
+          opacity: contentOpacity,
+        }}
+        className="relative z-10 flex h-screen items-center justify-center md:justify-start"
+      >
+        <div className="w-full max-w-2xl px-6 text-center text-white md:px-12 lg:px-20 md:text-left">
           <h1
-            className={`text-6xl md:text-6xl lg:text-8xl leading-tight text-[#C8A96A] ${cormorant.className}`}
+            className={`text-6xl leading-tight text-[#C8A96A] sm:text-7xl lg:text-8xl ${cormorant.className}`}
           >
             Safran
           </h1>
 
           <div
-            className={`mt-4 text-lg sm:text-xl md:text-2xl text-gray-100 ${manrope.className}`}
+            className={`mt-6 text-xl text-gray-100 sm:text-2xl ${manrope.className}`}
           >
             <SplitText
               text="Une expérience gastronomique raffinée où chaque plat est préparé avec passion et élégance."
-              className={`text-lg sm:text-xl md:text-2xl ${manrope.className}`}
+              className={`text-xl sm:text-2xl ${manrope.className}`}
               delay={35}
               duration={1.2}
               ease="power3.out"
@@ -50,13 +84,13 @@ export default function Hero() {
               to={{ opacity: 1, y: 0 }}
               threshold={0.1}
               rootMargin="-100px"
-              textAlign="left"
+              textAlign="center"
             />
           </div>
 
           <Link href="/#menu">
             <button
-              className={`group cursor-pointer mt-6 flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-black transition hover:bg-gray-200 ${poppins.className}`}
+              className={`group mx-auto mt-8 flex cursor-pointer items-center gap-2 rounded-lg bg-white px-6 py-3 text-black transition hover:bg-gray-200 md:mx-0 ${poppins.className}`}
             >
               Découvrez notre menu
               <ArrowRight
@@ -66,7 +100,7 @@ export default function Hero() {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

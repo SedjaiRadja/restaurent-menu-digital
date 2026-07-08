@@ -2,6 +2,28 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+.menu-swiper {
+  padding-bottom: 45px;
+}
+
+.menu-swiper .swiper-pagination {
+  position: relative !important;
+  margin-top: 25px !important;
+  bottom: 0 !important;
+}
+
+.menu-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #666 !important;
+  opacity: 1;
+}
+
+.menu-swiper .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 999px;
+  background: #C8A96A !important;
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
