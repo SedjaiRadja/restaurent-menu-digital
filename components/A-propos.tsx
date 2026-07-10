@@ -16,9 +16,9 @@ export default function AboutUs() {
         ease: [0.22, 1, 0.36, 1],
       }}
       viewport={{ once: true, amount: 0.2 }}
-      className="relative z-20 bg-[#0F0F0F] pt-28 pb-28"
+      className="relative z-20 bg-[#16120D] pt-28 pb-28"
     >
-      <div className="relative overflow-hidden rounded-t-[50px] bg-[#0F0F0F]">
+      <div className="relative overflow-hidden rounded-t-[50px] bg-[#16120D]">
         {/* Background */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10">
           <Image
@@ -29,7 +29,7 @@ export default function AboutUs() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-16 px-6 lg:flex-row lg:justify-between">
+        <div className="bg-[#16120D] relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-16 px-6 lg:flex-row lg:justify-between">
           {/* Left */}
           <div className="flex flex-1 flex-col items-center text-center lg:items-end lg:text-right">
             <h2
