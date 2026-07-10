@@ -18,12 +18,15 @@ export default function Home() {
 
       <main className="relative z-20">
         <Apropos />
+
         <Menu
           category={category}
           setCategory={setCategory}
           setFoodList={setFoodList}
-        />{" "}
-        <FoodDisplay foodList={foodList} />
+        />
+
+        <FoodDisplay foodList={foodList} category={category} />
+
         <Contact />
       </main>
     </section>
