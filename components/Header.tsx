@@ -71,11 +71,11 @@ export default function Header() {
           </h1>
 
           <div
-            className={`mt-6 text-xl text-gray-100 sm:text-2xl ${manrope.className}`}
+            className={`mt-6 mx-auto w-full max-w-xs sm:max-w-lg lg:max-w-2xl text-gray-100 md:mx-0`}
           >
             <SplitText
               text="Une expérience gastronomique raffinée où chaque plat est préparé avec passion et élégance."
-              className={`text-xl sm:text-2xl ${manrope.className}`}
+              className={`leading-relaxed text-xl sm:text-2xl ${manrope.className}`}
               delay={35}
               duration={1.2}
               ease="power3.out"
@@ -88,11 +88,11 @@ export default function Header() {
             />
           </div>
 
-          <Link href="/#menu">
+          <Link href="/#a-propos">
             <button
               className={`group mx-auto mt-8 flex cursor-pointer items-center gap-2 rounded-lg bg-white px-6 py-3 text-black transition hover:bg-gray-200 md:mx-0 ${poppins.className}`}
             >
-              Découvrez notre menu
+              Découvrir notre univers
               <ArrowRight
                 size={20}
                 className="transition-transform duration-300 group-hover:translate-x-2"

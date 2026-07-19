@@ -190,7 +190,7 @@ export default function Footer() {
         <div
           className={`mt-8 text-center text-sm text-gray-500 ${poppins.className}`}
         >
-          © 2026 Restaurant Prestige • Tous droits réservés.
+          © 2026 Restaurant Safran • Tous droits réservés.
         </div>
       </div>
     </footer>

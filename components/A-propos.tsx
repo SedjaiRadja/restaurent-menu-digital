@@ -8,7 +8,7 @@ import { cormorant, manrope, poppins } from "@/components/Header";
 export default function AboutUs() {
   return (
     <motion.section
-      id="about"
+      id="a-propos"
       initial={{ y: 120, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{

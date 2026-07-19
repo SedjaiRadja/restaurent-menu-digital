@@ -1,5 +1,3 @@
-"use client";
-
 import { MapPin, Mail, Phone, Clock3, Send } from "lucide-react";
 import Image from "next/image";
 import { cormorant, manrope, poppins } from "@/components/Header";
