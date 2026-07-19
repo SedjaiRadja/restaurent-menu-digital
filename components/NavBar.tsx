@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../public/assets/logo.png";
-import { Merriweather_Sans } from "next/font/google";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +35,7 @@ const Navbar = () => {
               width={250}
               height={200}
               priority
-              className="h sm:w-28 md:w-32 lg:w-36"
+              className="w-20 sm:w-34 md:w-34 lg:w-36 h-auto"
             />
           </Link>
 
