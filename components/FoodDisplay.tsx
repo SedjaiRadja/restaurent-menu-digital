@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { FoodItem } from "@/data/assets";
-import { cormorant, manrope, poppins } from "@/components/Header";
+import { cormorant } from "@/components/Header";
 import { AnimatePresence, motion } from "framer-motion";
 import { HoverEffect } from "./ui/card-hover-effect";
 
@@ -11,15 +12,22 @@ interface FoodDisplayProps {
   category: string;
 }
 
+const ITEMS_PER_PAGE = 6;
+
 export default function FoodDisplay({ foodList, category }: FoodDisplayProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(foodList.length / ITEMS_PER_PAGE);
+
+  const currentItems = foodList.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
+
   return (
-    <section
-      className="
-    bg-gradient-to-b from-[#17130D] to-[#0F0F0F]
-    px-6 py-20 md:px-12 lg:px-20"
-    >
+    <section className="bg-gradient-to-b from-[#17130D] to-[#0F0F0F] px-6 py-20 md:px-12 lg:px-20">
       {/* Section Title */}
-      <div className="flex flex-1 flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center">
         <AnimatePresence mode="wait">
           <motion.h2
             key={category || "all"}
@@ -47,6 +55,7 @@ export default function FoodDisplay({ foodList, category }: FoodDisplayProps) {
             {category || "Tous nos plats"}
           </motion.h2>
         </AnimatePresence>
+
         <Image
           src="/assets/spoon.png"
           alt="Décoration"
@@ -56,8 +65,49 @@ export default function FoodDisplay({ foodList, category }: FoodDisplayProps) {
         />
       </div>
 
-      {/* Cards */}
-      <HoverEffect items={foodList} />
+      {/* Food Cards */}
+      <HoverEffect items={currentItems} />
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="mt-12 flex items-center justify-center gap-2">
+          <button
+            onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
+            disabled={currentPage === 1}
+            className="rounded-lg border border-[#D4AF37] px-4 py-2 text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            ←
+          </button>
+
+          {Array.from({ length: totalPages }).map((_, index) => {
+            const page = index + 1;
+
+            return (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`h-10 w-10 rounded-full border transition ${
+                  currentPage === page
+                    ? "border-[#D4AF37] bg-[#D4AF37] text-black"
+                    : "border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
+                }`}
+              >
+                {page}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() =>
+              setCurrentPage((page) => Math.min(page + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="rounded-lg border border-[#D4AF37] px-4 py-2 text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            →
+          </button>
+        </div>
+      )}
     </section>
   );
 }

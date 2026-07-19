@@ -17,10 +17,7 @@ export default function MenuSection() {
         setFoodList={setFoodList}
       />
 
-      <FoodDisplay
-        foodList={foodList}
-        category={category}
-      />
+      <FoodDisplay key={category} foodList={foodList} category={category} />
     </>
   );
 }
